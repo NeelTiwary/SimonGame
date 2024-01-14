@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Game</title>
+</head>
+<style>
+    *{
+        background-color: rgb(138, 47, 223);
+    }
+    .uppermost{
+        margin-left: 40%;
+        margin-top: 10%;
+    }
+    .all{
+        display: flex;
+    }
+    .cont{
+        width:100px;
+        height: 100px;
+        border-radius: 25%;
+        border: black solid 5px;
+        padding: 10px;
+        margin: 5px;
+    }
+    .a1{
+        background-color: yellow;
+        color: yellow;
+    }
+    .a2{
+        background-color: olivedrab;
+        color:olivedrab;
+    }
+    .a3{
+        background-color: red;
+        color:red;
+    }
+    .a4{
+        background-color: aquamarine;
+        color:aquamarine;
+    }
+    .clicked{
+        opacity: 0.5;
+    }
+    .plc{
+        opacity: 0.1;
+    }
+</style>
+<body>
+    <div class="uppermost">
+    <h1>ENJOY THE GAME</h1>
+    <div class="all">
+    <div class="cont a1" id="a1">a1</div>
+    <div class="cont a2" id="a2">a2</div>
+    </div>
+    <div class="all">
+    <div class="cont a3" id="a3">a3</div>
+    <div class="cont a4" id="a4">a4</div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    const tobe=[];
+    let y=Math.random()*5; 
+    
+    var number=Math.floor(y)%4 +1;
+    for (var i=0;i<=y;i++){
+    let x=Math.random()*5; 
+    var number=Math.floor(x)%4 +1;
+    var name=".a"+number;
+    var n="a"+number;
+    tobe.push(n);
+    (function(name){
+        setTimeout(function(){
+            $(name).fadeOut();
+            $(name).fadeIn();
+        },i*1000);
+    })(name);
+}
+    console.log(tobe);
+    let count=0;
+    $(".cont").click(function(){
+        var id = $(this).attr("id");
+        console.log(id);
+        if (id !== tobe[count]){
+            alert("game end Wrong choice");
+            location.reload();
+            return;
+            }
+        else
+        {
+            //alert((count+1)+"done");
+            var a = new Audio("/java script/jquery/1.mp3");
+            a.play();
+            count++;
+            if (count===tobe.length)
+            {
+                alert("you won this round");
+                location.reload();
+            }
+        }
+        
+    });
+</script>
+</body>
+</html>
